@@ -282,16 +282,16 @@ Contains Zod schemas and TypeScript types for API requests, responses, IPC messa
 Contains plan-independent authorization rules such as:
 
 ```ts
-can(entitlements, "sync:cloud");
-can(entitlements, "export:advanced");
-limit(entitlements, "projects");
-limit(entitlements, "devices");
+can(entitlements, 'sync:cloud');
+can(entitlements, 'export:advanced');
+limit(entitlements, 'projects');
+limit(entitlements, 'devices');
 ```
 
 The applications should avoid scattered conditions such as:
 
 ```ts
-if (plan === "PRO" || plan === "TEAM") {
+if (plan === 'PRO' || plan === 'TEAM') {
   // ...
 }
 ```
@@ -319,12 +319,11 @@ DeskGate should begin with three plans that make feature and limit checks easy t
 ### 6.1 Plan Definitions
 
 ```ts
-type PlanId = "free" | "pro" | "team";
+type PlanId = 'free' | 'pro' | 'team';
 
-type Feature =
-  "desktop:access" | "sync:cloud" | "export:advanced" | "collaboration:team";
+type Feature = 'desktop:access' | 'sync:cloud' | 'export:advanced' | 'collaboration:team';
 
-type Limit = "projects" | "devices" | "offlineGraceDays";
+type Limit = 'projects' | 'devices' | 'offlineGraceDays';
 ```
 
 Example entitlement configuration:
@@ -333,10 +332,10 @@ Example entitlement configuration:
 const plans = {
   free: {
     features: {
-      "desktop:access": true,
-      "sync:cloud": false,
-      "export:advanced": false,
-      "collaboration:team": false,
+      'desktop:access': true,
+      'sync:cloud': false,
+      'export:advanced': false,
+      'collaboration:team': false,
     },
     limits: {
       projects: 2,
@@ -346,10 +345,10 @@ const plans = {
   },
   pro: {
     features: {
-      "desktop:access": true,
-      "sync:cloud": true,
-      "export:advanced": true,
-      "collaboration:team": false,
+      'desktop:access': true,
+      'sync:cloud': true,
+      'export:advanced': true,
+      'collaboration:team': false,
     },
     limits: {
       projects: 25,
@@ -359,10 +358,10 @@ const plans = {
   },
   team: {
     features: {
-      "desktop:access": true,
-      "sync:cloud": true,
-      "export:advanced": true,
-      "collaboration:team": true,
+      'desktop:access': true,
+      'sync:cloud': true,
+      'export:advanced': true,
+      'collaboration:team': true,
     },
     limits: {
       projects: null,
@@ -385,7 +384,7 @@ Suggested normalized subscription states:
 
 ```ts
 type SubscriptionAccessStatus =
-  "active" | "trialing" | "grace_period" | "past_due" | "canceled" | "expired";
+  'active' | 'trialing' | 'grace_period' | 'past_due' | 'canceled' | 'expired';
 ```
 
 Access rules can initially be:
@@ -1184,17 +1183,17 @@ The shared contracts package should define machine-readable errors.
 
 ```ts
 type ApiErrorCode =
-  | "UNAUTHENTICATED"
-  | "SESSION_EXPIRED"
-  | "DEVICE_REVOKED"
-  | "DEVICE_LIMIT_REACHED"
-  | "SUBSCRIPTION_REQUIRED"
-  | "SUBSCRIPTION_INACTIVE"
-  | "FEATURE_NOT_INCLUDED"
-  | "USAGE_LIMIT_REACHED"
-  | "DESKTOP_UPDATE_REQUIRED"
-  | "INVALID_AUTHORIZATION_CODE"
-  | "AUTHORIZATION_CODE_EXPIRED";
+  | 'UNAUTHENTICATED'
+  | 'SESSION_EXPIRED'
+  | 'DEVICE_REVOKED'
+  | 'DEVICE_LIMIT_REACHED'
+  | 'SUBSCRIPTION_REQUIRED'
+  | 'SUBSCRIPTION_INACTIVE'
+  | 'FEATURE_NOT_INCLUDED'
+  | 'USAGE_LIMIT_REACHED'
+  | 'DESKTOP_UPDATE_REQUIRED'
+  | 'INVALID_AUTHORIZATION_CODE'
+  | 'AUTHORIZATION_CODE_EXPIRED';
 ```
 
 Example response:
