@@ -201,19 +201,6 @@ deskgate/
 │   │   │   ├── limits.ts
 │   │   │   └── authorize.ts
 │   │   └── package.json
-│   │
-│   ├── ui/
-│   │   ├── src/
-│   │   └── package.json
-│   │
-│   ├── config/
-│   │   ├── eslint/
-│   │   ├── typescript/
-│   │   └── package.json
-│   │
-│   └── utils/
-│       ├── src/
-│       └── package.json
 │
 ├── package.json
 ├── pnpm-workspace.yaml
