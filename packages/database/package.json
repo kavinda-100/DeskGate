@@ -26,6 +26,7 @@
     "@prisma/client": "^7.9.1",
     "dotenv": "^17.4.2",
     "find-config": "^1.0.0",
-    "pg": "^8.22.0"
+    "pg": "^8.22.0",
+    "@deskgate/schemas": "workspace:*"
   }
 }
