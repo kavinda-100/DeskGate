@@ -1,4 +1,5 @@
 import type { Response } from 'express';
+import type { HTTPStatusCode } from '../constants/http-status-codes';
 
 export type ApiSuccessResponse<T> = {
   success: true;
@@ -14,7 +15,7 @@ export type ApiErrorResponse = {
 
 export function sendSuccess<T>(
   response: Response,
-  statusCode: number,
+  statusCode: HTTPStatusCode,
   message: string,
   data: T,
 ): void {
@@ -25,7 +26,7 @@ export function sendSuccess<T>(
 
 export function sendError(
   response: Response,
-  statusCode: number,
+  statusCode: HTTPStatusCode,
   message: string,
   errors?: unknown,
 ): void {

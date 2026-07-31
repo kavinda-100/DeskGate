@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express from 'express';
+import { HTTPStatusCodes } from './constants/http-status-codes';
 import { errorHandler, notFoundHandler } from './middleware/error-handler';
 import { sendSuccess } from './lib/api-response';
 
@@ -15,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/health', (_request, response) => {
-  sendSuccess(response, 200, 'API is healthy.', { status: 'ok' });
+  sendSuccess(response, HTTPStatusCodes.OK, 'API is healthy.', { status: 'ok' });
 });
 
 app.use(notFoundHandler);

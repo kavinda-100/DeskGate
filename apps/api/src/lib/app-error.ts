@@ -1,6 +1,8 @@
+import type { HTTPStatusCode } from '../constants/http-status-codes';
+
 export class AppError extends Error {
   constructor(
-    public readonly statusCode: number,
+    public readonly statusCode: HTTPStatusCode,
     message: string,
     public readonly errors?: unknown,
   ) {
