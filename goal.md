@@ -40,22 +40,22 @@ The project should provide practical experience with:
 
 ## 3. Technology Stack
 
-| Area | Technology |
-|---|---|
-| Package manager | pnpm |
-| Monorepo | pnpm workspaces |
-| Language | TypeScript |
-| Backend API | Express.js |
-| Web application | TanStack Start |
-| UI components | shadcn/ui |
-| Desktop application | Electron |
-| Authentication | Better Auth |
-| Billing | Stripe and Better Auth Stripe plugin |
-| ORM | Prisma |
-| Database | PostgreSQL |
-| Validation | Zod |
-| Client state | Zustand |
-| Server-state fetching | TanStack Query, where useful |
+| Area                  | Technology                           |
+| --------------------- | ------------------------------------ |
+| Package manager       | pnpm                                 |
+| Monorepo              | pnpm workspaces                      |
+| Language              | TypeScript                           |
+| Backend API           | Express.js                           |
+| Web application       | TanStack Start                       |
+| UI components         | shadcn/ui                            |
+| Desktop application   | Electron                             |
+| Authentication        | Better Auth                          |
+| Billing               | Stripe and Better Auth Stripe plugin |
+| ORM                   | Prisma                               |
+| Database              | PostgreSQL                           |
+| Validation            | Zod                                  |
+| Client state          | Zustand                              |
+| Server-state fetching | TanStack Query, where useful         |
 
 ---
 
@@ -282,10 +282,10 @@ Contains Zod schemas and TypeScript types for API requests, responses, IPC messa
 Contains plan-independent authorization rules such as:
 
 ```ts
-can(entitlements, "sync:cloud")
-can(entitlements, "export:advanced")
-limit(entitlements, "projects")
-limit(entitlements, "devices")
+can(entitlements, "sync:cloud");
+can(entitlements, "export:advanced");
+limit(entitlements, "projects");
+limit(entitlements, "devices");
 ```
 
 The applications should avoid scattered conditions such as:
@@ -306,15 +306,15 @@ May contain reusable visual components that work in both the web app and Electro
 
 DeskGate should begin with three plans that make feature and limit checks easy to observe during development.
 
-| Capability | Free | Pro | Team |
-|---|---:|---:|---:|
-| Desktop access | Yes | Yes | Yes |
-| Maximum projects | 2 | 25 | Unlimited |
-| Cloud synchronization | No | Yes | Yes |
-| Advanced export | No | Yes | Yes |
-| Team collaboration | No | No | Yes |
-| Maximum activated devices | 1 | 3 | 10 |
-| Offline grace period | None | 3 days | 7 days |
+| Capability                | Free |    Pro |      Team |
+| ------------------------- | ---: | -----: | --------: |
+| Desktop access            |  Yes |    Yes |       Yes |
+| Maximum projects          |    2 |     25 | Unlimited |
+| Cloud synchronization     |   No |    Yes |       Yes |
+| Advanced export           |   No |    Yes |       Yes |
+| Team collaboration        |   No |     No |       Yes |
+| Maximum activated devices |    1 |      3 |        10 |
+| Offline grace period      | None | 3 days |    7 days |
 
 ### 6.1 Plan Definitions
 
@@ -322,15 +322,9 @@ DeskGate should begin with three plans that make feature and limit checks easy t
 type PlanId = "free" | "pro" | "team";
 
 type Feature =
-  | "desktop:access"
-  | "sync:cloud"
-  | "export:advanced"
-  | "collaboration:team";
+  "desktop:access" | "sync:cloud" | "export:advanced" | "collaboration:team";
 
-type Limit =
-  | "projects"
-  | "devices"
-  | "offlineGraceDays";
+type Limit = "projects" | "devices" | "offlineGraceDays";
 ```
 
 Example entitlement configuration:
@@ -391,24 +385,19 @@ Suggested normalized subscription states:
 
 ```ts
 type SubscriptionAccessStatus =
-  | "active"
-  | "trialing"
-  | "grace_period"
-  | "past_due"
-  | "canceled"
-  | "expired";
+  "active" | "trialing" | "grace_period" | "past_due" | "canceled" | "expired";
 ```
 
 Access rules can initially be:
 
-| Subscription status | Paid feature access |
-|---|---|
-| `active` | Allowed |
-| `trialing` | Allowed |
-| `grace_period` | Allowed with warning |
-| `past_due` | Product decision; normally temporary warning or restricted access |
-| `canceled` | Allowed until paid-through date, then denied |
-| `expired` | Denied |
+| Subscription status | Paid feature access                                               |
+| ------------------- | ----------------------------------------------------------------- |
+| `active`            | Allowed                                                           |
+| `trialing`          | Allowed                                                           |
+| `grace_period`      | Allowed with warning                                              |
+| `past_due`          | Product decision; normally temporary warning or restricted access |
+| `canceled`          | Allowed until paid-through date, then denied                      |
+| `expired`           | Denied                                                            |
 
 ### 6.3 Entitlement Resolution
 
@@ -1078,11 +1067,7 @@ A later version may issue a signed offline entitlement document.
   "userId": "user_123",
   "deviceId": "device_123",
   "plan": "pro",
-  "features": [
-    "desktop:access",
-    "sync:cloud",
-    "export:advanced"
-  ],
+  "features": ["desktop:access", "sync:cloud", "export:advanced"],
   "issuedAt": "2026-07-31T06:30:00.000Z",
   "validUntil": "2026-08-03T06:30:00.000Z"
 }
