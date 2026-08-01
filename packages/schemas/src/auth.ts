@@ -5,12 +5,12 @@ export const signUpSchema = z
     email: z.email({ error: 'Invalid email address' }),
     password: z
       .string()
-      .min(6, { error: 'Password must be at least 6 characters long' })
-      .max(12, { error: 'Password must be at most 12 characters long' }),
+      .min(8, { error: 'Password must be at least 8 characters long' })
+      .max(128, { error: 'Password must be at most 128 characters long' }),
     confirmPassword: z
       .string()
-      .min(6, { error: 'Confirm Password must be at least 6 characters long' })
-      .max(12, { error: 'Confirm Password must be at most 12 characters long' }),
+      .min(8, { error: 'Confirm password must be at least 8 characters long' })
+      .max(128, { error: 'Confirm password must be at most 128 characters long' }),
     name: z
       .string({ error: 'Name is required' })
       .min(3, { error: 'Name must be at least 3 characters long' })
@@ -25,9 +25,9 @@ export const signInSchema = z.object({
   email: z.email({ error: 'Invalid email address' }),
   password: z
     .string()
-    .min(6, { error: 'Password must be at least 6 characters long' })
-    .max(12, { error: 'Password must be at most 12 characters long' }),
-  rememberMe: z.boolean().optional().default(false),
+    .min(8, { error: 'Password must be at least 8 characters long' })
+    .max(128, { error: 'Password must be at most 128 characters long' }),
+  rememberMe: z.boolean(),
 });
 
 export type SignUpSchemaType = z.infer<typeof signUpSchema>;
