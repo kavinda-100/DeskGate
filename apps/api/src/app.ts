@@ -11,16 +11,16 @@ import { env } from './env';
 
 export const app = express();
 
-// need to come first.
-app.all('/api/auth/*splat', toNodeHandler(auth));
-
-app.use(requestLogger);
 app.use(
   cors({
     origin: env.WEB_URL,
     credentials: true,
   }),
 );
+// need to come first.
+app.all('/api/auth/*splat', toNodeHandler(auth));
+// then the rest of the middleware and routes.
+app.use(requestLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
