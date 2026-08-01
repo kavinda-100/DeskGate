@@ -4,10 +4,25 @@ import { stripe } from '@better-auth/stripe';
 import Stripe from 'stripe';
 
 import { prisma } from '@deskgate/database';
+import type { PlansType } from '@deskgate/config';
+import { plans } from '@deskgate/config';
 import { env } from '../env';
 
 const stripeClient = new Stripe(env.STRIPE_SECRET_KEY, {
   apiVersion: '2026-07-29.dahlia',
+});
+
+const plansWithPriceIds: PlansType[] = plans.map((plan) => {
+  if (plan.name === 'free') {
+    return { ...plan, priceId: env.FREE_PLAN_PRICE_ID };
+  }
+  if (plan.name === 'pro') {
+    return { ...plan, priceId: env.PRO_PLAN_PRICE_ID };
+  }
+  if (plan.name === 'team') {
+    return { ...plan, priceId: env.TEAM_PLAN_PRICE_ID };
+  }
+  return plan;
 });
 
 export const auth = betterAuth({
@@ -77,47 +92,7 @@ export const auth = betterAuth({
       createCustomerOnSignUp: true,
       subscription: {
         enabled: true,
-        plans: [
-          {
-            name: 'free',
-            priceId: 'price_1TzXkxKloeSGRuTJ6WrLXapg',
-            limits: {
-              'desktop:access': true,
-              'sync:cloud': false,
-              'export:advanced': false,
-              'collaboration:team': false,
-              projects: 2,
-              devices: 1,
-              offlineGraceDays: 0,
-            },
-          },
-          {
-            name: 'pro',
-            priceId: 'price_1TzXiYKloeSGRuTJNwZl6EzI',
-            limits: {
-              'desktop:access': true,
-              'sync:cloud': true,
-              'export:advanced': true,
-              'collaboration:team': false,
-              projects: 25,
-              devices: 3,
-              offlineGraceDays: 3,
-            },
-          },
-          {
-            name: 'team',
-            priceId: 'price_1TzXkBKloeSGRuTJm1WOEWDT',
-            limits: {
-              'desktop:access': true,
-              'sync:cloud': true,
-              'export:advanced': true,
-              'collaboration:team': true,
-              projects: null,
-              devices: 10,
-              offlineGraceDays: 7,
-            },
-          },
-        ],
+        plans: plansWithPriceIds,
       },
     }),
   ],
