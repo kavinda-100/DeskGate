@@ -7,11 +7,13 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node dist/src/server.js",
-    "build": "tsc -p tsconfig.json --noEmit false && ts-add-js-extension --dir=dist"
+    "build": "tsc -p tsconfig.json --noEmit false && ts-add-js-extension --dir=dist",
+    "db:schema:generate": "pnpm dlx auth@latest generate --config ./auth/auth.ts --output ./src/auth/prisma/schema.prisma --yes"
   },
   "dependencies": {
-    "@deskgate/schemas": "workspace:*",
+    "@better-auth/stripe": "^1.6.25",
     "@deskgate/database": "workspace:*",
+    "@deskgate/schemas": "workspace:*",
     "better-auth": "^1.6.25",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
@@ -19,7 +21,8 @@
     "find-config": "^1.0.0",
     "pino": "^10.3.1",
     "pino-http": "^11.0.0",
-    "pino-pretty": "^13.1.3"
+    "pino-pretty": "^13.1.3",
+    "stripe": "^22.4.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
