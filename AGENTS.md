@@ -38,3 +38,6 @@ Recent commits use short, imperative subjects, for example `Add initial project 
 ## Security & Configuration
 
 Never commit credentials or local `.env` values. Keep authorization, subscriptions, and entitlements enforced by the backend; desktop and web clients must not be treated as a source of truth.
+
+## Skill (agent skills)
+To see if any skills are available for the agent, you can look at the directory `./agents/skills` and check if any skill is available for the agent. If you want to add a new skill, you can create a new directory in `./agents/skills` and add your skill there. Each skill should describes the skill and its capabilities.

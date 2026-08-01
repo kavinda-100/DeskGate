@@ -1,16 +1,23 @@
 import cors from 'cors';
 import express from 'express';
+import { toNodeHandler } from 'better-auth/node';
+
 import { HTTPStatusCodes } from './constants/http-status-codes';
 import { requestLogger } from './lib/logger';
 import { errorHandler, notFoundHandler } from './middleware/error-handler';
 import { sendSuccess } from './lib/api-response';
+import { auth } from './auth/auth';
+import { env } from './env';
 
 export const app = express();
+
+// need to come first.
+app.all('/api/auth/*splat', toNodeHandler(auth));
 
 app.use(requestLogger);
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: env.WEB_URL,
     credentials: true,
   }),
 );
