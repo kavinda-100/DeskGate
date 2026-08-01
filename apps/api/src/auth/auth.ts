@@ -80,7 +80,7 @@ export const auth = betterAuth({
         plans: [
           {
             name: 'free',
-            priceId: 'price_free_placeholder',
+            priceId: 'price_1TzXkxKloeSGRuTJ6WrLXapg',
             limits: {
               'desktop:access': true,
               'sync:cloud': false,
@@ -93,7 +93,7 @@ export const auth = betterAuth({
           },
           {
             name: 'pro',
-            priceId: 'price_pro_placeholder',
+            priceId: 'price_1TzXiYKloeSGRuTJNwZl6EzI',
             limits: {
               'desktop:access': true,
               'sync:cloud': true,
@@ -106,7 +106,7 @@ export const auth = betterAuth({
           },
           {
             name: 'team',
-            priceId: 'price_team_placeholder',
+            priceId: 'price_1TzXkBKloeSGRuTJm1WOEWDT',
             limits: {
               'desktop:access': true,
               'sync:cloud': true,
