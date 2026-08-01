@@ -12,6 +12,7 @@ const stripeClient = new Stripe(env.STRIPE_SECRET_KEY, {
 
 export const auth = betterAuth({
   appName: 'DeskGate',
+  baseURL: env.BETTER_AUTH_URL,
 
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
@@ -38,9 +39,6 @@ export const auth = betterAuth({
     cookieCache: {
       enabled: true,
       maxAge: 5 * 60, // Cache duration in seconds (5 minutes)
-      refreshCache: {
-        updateAge: 60, // Refresh when 60 seconds remain before expiry
-      },
     },
   },
 
@@ -81,23 +79,42 @@ export const auth = betterAuth({
         enabled: true,
         plans: [
           {
-            name: 'basic', // the name of the plan, it'll be automatically lower cased when stored in the database
-            priceId: 'price_1234567890', // the price ID from stripe
-            annualDiscountPriceId: 'price_1234567890', // (optional) the price ID for annual billing with a discount
+            name: 'free',
+            priceId: 'price_free_placeholder',
             limits: {
-              projects: 5,
-              storage: 10,
+              'desktop:access': true,
+              'sync:cloud': false,
+              'export:advanced': false,
+              'collaboration:team': false,
+              projects: 2,
+              devices: 1,
+              offlineGraceDays: 0,
             },
           },
           {
             name: 'pro',
-            priceId: 'price_0987654321',
+            priceId: 'price_pro_placeholder',
             limits: {
-              projects: 20,
-              storage: 50,
+              'desktop:access': true,
+              'sync:cloud': true,
+              'export:advanced': true,
+              'collaboration:team': false,
+              projects: 25,
+              devices: 3,
+              offlineGraceDays: 3,
             },
-            freeTrial: {
-              days: 14,
+          },
+          {
+            name: 'team',
+            priceId: 'price_team_placeholder',
+            limits: {
+              'desktop:access': true,
+              'sync:cloud': true,
+              'export:advanced': true,
+              'collaboration:team': true,
+              projects: null,
+              devices: 10,
+              offlineGraceDays: 7,
             },
           },
         ],

@@ -8,7 +8,7 @@
     "dev": "tsx watch src/server.ts",
     "start": "node dist/src/server.js",
     "build": "tsc -p tsconfig.json --noEmit false && ts-add-js-extension --dir=dist",
-    "db:schema:generate": "pnpm dlx auth@latest generate --config ./auth/auth.ts --output ./src/auth/prisma/schema.prisma --yes"
+    "db:schema:generate": "pnpm dlx auth@latest generate --config ./src/auth/auth.ts --output ../../packages/database/prisma/schema.prisma --yes"
   },
   "dependencies": {
     "@better-auth/stripe": "^1.6.25",

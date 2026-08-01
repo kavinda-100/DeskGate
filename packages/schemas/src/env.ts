@@ -10,8 +10,15 @@ export const ApiEnvSchema = z
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).optional(),
     WEB_URL: z.url({ error: 'WEB_URL must be a valid URL' }).default('http://localhost:3000'),
-    STRIPE_SECRET_KEY: z.string({ error: 'STRIPE_SECRET_KEY is required' }),
-    STRIPE_WEBHOOK_SECRET: z.string({ error: 'STRIPE_WEBHOOK_SECRET is required' }),
+    BETTER_AUTH_URL: z
+      .url({ error: 'BETTER_AUTH_URL must be a valid URL' })
+      .default('http://localhost:5000'),
+    STRIPE_SECRET_KEY: z
+      .string({ error: 'STRIPE_SECRET_KEY is required' })
+      .min(10, { error: 'STRIPE_SECRET_KEY must be at least 10 characters long' }),
+    STRIPE_WEBHOOK_SECRET: z
+      .string({ error: 'STRIPE_WEBHOOK_SECRET is required' })
+      .min(3, { error: 'STRIPE_WEBHOOK_SECRET must be at least 3 characters long' }),
   })
   .transform(({ NODE_ENV, LOG_LEVEL, ...env }) => ({
     ...env,
