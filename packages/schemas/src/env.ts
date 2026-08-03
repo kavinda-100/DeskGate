@@ -19,15 +19,6 @@ export const ApiEnvSchema = z
     STRIPE_WEBHOOK_SECRET: z
       .string({ error: 'STRIPE_WEBHOOK_SECRET is required' })
       .min(3, { error: 'STRIPE_WEBHOOK_SECRET must be at least 3 characters long' }),
-    FREE_PLAN_PRICE_ID: z
-      .string()
-      .min(3, { error: 'FREE_PLAN_PRICE_ID must be at least 3 characters long' }),
-    PRO_PLAN_PRICE_ID: z
-      .string()
-      .min(3, { error: 'PRO_PLAN_PRICE_ID must be at least 3 characters long' }),
-    TEAM_PLAN_PRICE_ID: z
-      .string()
-      .min(3, { error: 'TEAM_PLAN_PRICE_ID must be at least 3 characters long' }),
   })
   .transform(({ NODE_ENV, LOG_LEVEL, ...env }) => ({
     ...env,

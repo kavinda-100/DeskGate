@@ -47,7 +47,11 @@ function NavigationLinks({ onNavigate }: { onNavigate?: () => void }) {
 function GuestActions({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex flex-col gap-3 md:flex-row md:items-center">
-      <Button variant="ghost" render={<Link to="/sign-in" />} onClick={onNavigate}>
+      <Button
+        variant="ghost"
+        render={<Link to="/sign-in" search={{ returnTo: '/' }} />}
+        onClick={onNavigate}
+      >
         Sign in
       </Button>
       <Button render={<Link to="/sign-up" />} onClick={onNavigate}>
