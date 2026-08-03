@@ -27,8 +27,8 @@
     "db:schema:generate": "pnpm --filter @deskgate/schemas build && pnpm --filter @deskgate/api db:schema:generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
-    "format:fix": "prettier --write \"**/*.{ts,tsx,js,json,md}\""
+    "format": "prettier --check \"**/*.{ts,tsx,js,json}\"",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,json}\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
