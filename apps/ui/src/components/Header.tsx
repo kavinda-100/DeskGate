@@ -3,6 +3,7 @@ import { MenuIcon } from 'lucide-react';
 import { useState } from 'react';
 
 import { LogoutButton } from '@/components/logout-button';
+import { ModeToggle } from '@/components/mode-toogle';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -73,10 +74,14 @@ export function Header() {
 
         <div className="hidden items-center gap-8 md:flex">
           <NavigationLinks />
-          {isAuthenticated ? <LogoutButton /> : !isPending && <GuestActions />}
+          <div className="flex items-center gap-3">
+            <ModeToggle />
+            {isAuthenticated ? <LogoutButton /> : !isPending && <GuestActions />}
+          </div>
         </div>
 
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+          <ModeToggle />
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger
               render={
