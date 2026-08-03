@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/pricing/')({
+export const Route = createFileRoute('/(main)/pricing/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return <div>Hello "/pricing/"!</div>;
+  return <div className="size-full">pricing</div>;
 }
