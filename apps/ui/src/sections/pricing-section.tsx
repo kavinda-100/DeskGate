@@ -140,6 +140,7 @@ const PricingSection = () => {
         subscriptionId: activeSubscription?.stripeSubscriptionId,
         successUrl: `${window.location.origin}/pricing`,
         cancelUrl: `${window.location.origin}/pricing`,
+        returnUrl: `${window.location.origin}/pricing`,
       });
       setPendingPlanName(null);
 
