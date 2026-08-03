@@ -5,3 +5,4 @@ dist
 .tsbuildinfo
 generated
 **/generated/**
+apps/ui/src/routeTree.gen.ts

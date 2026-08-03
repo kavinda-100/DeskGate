@@ -7,10 +7,6 @@ const envPath = findConfig('.env');
 
 if (envPath) {
   dotenv.config({ path: envPath });
-} else {
-  throw new Error(
-    'No .env file found in the project root. Please create one at the root. [from database]',
-  );
 }
 
 const validatedEnv = DatabaseEnvSchema.safeParse(process.env);
