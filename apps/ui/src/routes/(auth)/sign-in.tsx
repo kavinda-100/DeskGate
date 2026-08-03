@@ -18,11 +18,15 @@ import { toast } from '@/components/ui/toast.tsx';
 import { authClient } from '@/lib/auth-client.ts';
 
 export const Route = createFileRoute('/(auth)/sign-in')({
+  validateSearch: (search) => ({
+    returnTo: search.returnTo === '/pricing' ? '/pricing' : '/',
+  }),
   component: RouteComponent,
 });
 
 function RouteComponent() {
   const router = useRouter();
+  const { returnTo } = Route.useSearch();
   const formId = 'sign-in-form';
   const form = useForm({
     defaultValues: {
@@ -54,7 +58,7 @@ function RouteComponent() {
               title: 'Signed In',
               description: 'Welcome back.',
             });
-            router.navigate({ to: '/' });
+            router.navigate({ to: returnTo });
           },
         },
       );

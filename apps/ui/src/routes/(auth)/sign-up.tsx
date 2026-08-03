@@ -174,7 +174,11 @@ function RouteComponent() {
         <div className="flex w-full flex-col gap-6">
           <p className="text-start text-sm text-muted-foreground">
             Already have an account?{' '}
-            <Link className="font-medium text-primary underline underline-offset-4" to="/sign-in">
+            <Link
+              className="font-medium text-primary underline underline-offset-4"
+              to="/sign-in"
+              search={{ returnTo: '/' }}
+            >
               Sign in
             </Link>
           </p>

@@ -3,6 +3,7 @@ import { MenuIcon } from 'lucide-react';
 import { useState } from 'react';
 
 import { LogoutButton } from '@/components/logout-button';
+import { ModeToggle } from '@/components/mode-toogle';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -46,10 +47,15 @@ function NavigationLinks({ onNavigate }: { onNavigate?: () => void }) {
 function GuestActions({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex flex-col gap-3 md:flex-row md:items-center">
-      <Button variant="ghost" render={<Link to="/sign-in" />} onClick={onNavigate}>
+      <Button
+        nativeButton={false}
+        variant="ghost"
+        render={<Link to="/sign-in" search={{ returnTo: '/' }} />}
+        onClick={onNavigate}
+      >
         Sign in
       </Button>
-      <Button render={<Link to="/sign-up" />} onClick={onNavigate}>
+      <Button nativeButton={false} render={<Link to="/sign-up" />} onClick={onNavigate}>
         Sign up
       </Button>
     </div>
@@ -73,10 +79,14 @@ export function Header() {
 
         <div className="hidden items-center gap-8 md:flex">
           <NavigationLinks />
-          {isAuthenticated ? <LogoutButton /> : !isPending && <GuestActions />}
+          <div className="flex items-center gap-3">
+            <ModeToggle />
+            {isAuthenticated ? <LogoutButton /> : !isPending && <GuestActions />}
+          </div>
         </div>
 
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+          <ModeToggle />
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger
               render={

@@ -17,10 +17,10 @@ app.use(
     credentials: true,
   }),
 );
+app.use(requestLogger);
 // need to come first.
 app.all('/api/auth/*splat', toNodeHandler(auth));
 // then the rest of the middleware and routes.
-app.use(requestLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -5,6 +5,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import appCss from '../styles.css?url';
 import * as React from 'react';
 import { Toaster } from '@/components/ui/toast';
+import { ThemeProvider } from '@/components/theme-provider.tsx';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -43,8 +44,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
-        <Toaster />
+        <ThemeProvider defaultTheme="dark" storageKey="theme">
+          {children}
+          <Toaster />
+        </ThemeProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',

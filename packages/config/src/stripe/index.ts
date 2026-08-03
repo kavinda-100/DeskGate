@@ -16,7 +16,7 @@ export type PlansType = {
 export const plans: PlansType[] = [
   {
     name: 'free',
-    priceId: '',
+    priceId: 'price_1TzXkxKloeSGRuTJ6WrLXapg',
     limits: {
       'desktop:access': true,
       'sync:cloud': false,
@@ -29,7 +29,7 @@ export const plans: PlansType[] = [
   },
   {
     name: 'pro',
-    priceId: '',
+    priceId: 'price_1TzXiYKloeSGRuTJNwZl6EzI',
     limits: {
       'desktop:access': true,
       'sync:cloud': true,
@@ -42,7 +42,7 @@ export const plans: PlansType[] = [
   },
   {
     name: 'team',
-    priceId: '',
+    priceId: 'price_1TzXkBKloeSGRuTJm1WOEWDT',
     limits: {
       'desktop:access': true,
       'sync:cloud': true,
