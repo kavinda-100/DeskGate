@@ -13,6 +13,11 @@
       "skillPath": "security/SKILL.md",
       "computedHash": "7a230edf3a24ce18162cb4379f59b6a19b8d24ca04db530609d0f15cede556dc"
     },
+    "connect-recommend": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "ddf136d2fdc3fb24d5b4b932ec60cb714e941ca8b624b5f3fe8888728e5b5563"
+    },
     "create-auth": {
       "source": "better-auth/skills",
       "sourceType": "github",
@@ -37,11 +42,36 @@
       "skillPath": "skills/shadcn/SKILL.md",
       "computedHash": "c1a68ee06a668aced9ab2b5fbdea5f989864123794eb2e056b339a072dbb7f10"
     },
+    "stripe-best-practices": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "bb4292e01d7b0e7b58a85b3e590179792a0d410d2d5daadb572c39c5b28081f4"
+    },
+    "stripe-directory": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "58d8c458beaa92877ed2f0a622af65a0a91e2804efcc4188ac87a35780015361"
+    },
+    "stripe-docs": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "7f8b47057d65cdc55c60ed870bf6ad508907e5d981fca77781b4964de54d985f"
+    },
+    "stripe-projects": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "a53a28a78e6561d15dd1aadaf552217bfa2f9dbb2ef57aa9cd7a9caf93ef5eed"
+    },
     "two-factor-authentication-best-practices": {
       "source": "better-auth/skills",
       "sourceType": "github",
       "skillPath": "better-auth/twoFactor/SKILL.md",
       "computedHash": "a6f720042e5a090909e0d519a6a50a7eb8179553cd5315f0bbad852a6d20dac8"
+    },
+    "upgrade-stripe": {
+      "source": "docs.stripe.com",
+      "sourceType": "well-known",
+      "computedHash": "f4aa17ac21714309e3cafa4eb15b032b3d8ff8623c8731944ccbcaf6766fdb49"
     }
   }
 }

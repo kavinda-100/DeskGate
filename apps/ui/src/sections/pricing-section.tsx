@@ -117,12 +117,13 @@ const PricingSection = () => {
     // If the user has an active subscription and is trying to select the same plan, open the billing portal
     if (activeSubscription?.plan.toLowerCase() === plan.name) {
       const { error } = await authClient.subscription.billingPortal({
-        returnUrl: '/pricing',
+        returnUrl: `${window.location.origin}/pricing`,
         referenceId: session.user.id,
       });
       setPendingPlanName(null);
 
       if (error) {
+        console.error('Error occurred while opening billing portal:', error);
         toast.add({
           type: 'error',
           title: 'Billing portal unavailable',
@@ -137,12 +138,13 @@ const PricingSection = () => {
         plan: plan.name,
         referenceId: session.user.id,
         subscriptionId: activeSubscription?.stripeSubscriptionId,
-        successUrl: '/pricing',
-        cancelUrl: '/pricing',
+        successUrl: `${window.location.origin}/pricing`,
+        cancelUrl: `${window.location.origin}/pricing`,
       });
       setPendingPlanName(null);
 
       if (error) {
+        console.error('Error occurred while upgrading subscription:', error);
         toast.add({
           type: 'error',
           title: 'Checkout unavailable',
