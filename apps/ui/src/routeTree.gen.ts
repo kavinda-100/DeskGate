@@ -9,19 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
+import { Route as mainRouteRouteImport } from './routes/(main)/route'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 import { Route as authSignUpRouteImport } from './routes/(auth)/sign-up'
-import { Route as PricingIndexRouteImport } from './routes/pricing/index'
+import { Route as mainIndexRouteImport } from './routes/(main)/index'
+import { Route as mainPricingIndexRouteImport } from './routes/(main)/pricing/index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const authRouteRoute = authRouteRouteImport.update({
   id: '/(auth)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const mainRouteRoute = mainRouteRouteImport.update({
+  id: '/(main)',
   getParentRoute: () => rootRouteImport,
 } as any)
 const authSignInRoute = authSignInRouteImport.update({
@@ -34,66 +34,72 @@ const authSignUpRoute = authSignUpRouteImport.update({
   path: '/sign-up',
   getParentRoute: () => authRouteRoute,
 } as any)
-const PricingIndexRoute = PricingIndexRouteImport.update({
+const mainIndexRoute = mainIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => mainRouteRoute,
+} as any)
+const mainPricingIndexRoute = mainPricingIndexRouteImport.update({
   id: '/pricing/',
   path: '/pricing/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => mainRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
-  '/pricing/': typeof PricingIndexRoute
+  '/': typeof mainIndexRoute
+  '/pricing/': typeof mainPricingIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
-  '/pricing': typeof PricingIndexRoute
+  '/': typeof mainIndexRoute
+  '/pricing': typeof mainPricingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/(auth)': typeof authRouteRouteWithChildren
+  '/(main)': typeof mainRouteRouteWithChildren
   '/(auth)/sign-in': typeof authSignInRoute
   '/(auth)/sign-up': typeof authSignUpRoute
-  '/pricing/': typeof PricingIndexRoute
+  '/(main)/': typeof mainIndexRoute
+  '/(main)/pricing/': typeof mainPricingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sign-in' | '/sign-up' | '/pricing/'
+  fullPaths: '/sign-in' | '/sign-up' | '/' | '/pricing/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sign-in' | '/sign-up' | '/pricing'
+  to: '/sign-in' | '/sign-up' | '/' | '/pricing'
   id:
     | '__root__'
-    | '/'
     | '/(auth)'
+    | '/(main)'
     | '/(auth)/sign-in'
     | '/(auth)/sign-up'
-    | '/pricing/'
+    | '/(main)/'
+    | '/(main)/pricing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   authRouteRoute: typeof authRouteRouteWithChildren
-  PricingIndexRoute: typeof PricingIndexRoute
+  mainRouteRoute: typeof mainRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/(auth)': {
       id: '/(auth)'
       path: ''
       fullPath: ''
       preLoaderRoute: typeof authRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(main)': {
+      id: '/(main)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof mainRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(auth)/sign-in': {
@@ -110,12 +116,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authSignUpRouteImport
       parentRoute: typeof authRouteRoute
     }
-    '/pricing/': {
-      id: '/pricing/'
+    '/(main)/': {
+      id: '/(main)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof mainIndexRouteImport
+      parentRoute: typeof mainRouteRoute
+    }
+    '/(main)/pricing/': {
+      id: '/(main)/pricing/'
       path: '/pricing'
       fullPath: '/pricing/'
-      preLoaderRoute: typeof PricingIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof mainPricingIndexRouteImport
+      parentRoute: typeof mainRouteRoute
     }
   }
 }
@@ -134,10 +147,23 @@ const authRouteRouteWithChildren = authRouteRoute._addFileChildren(
   authRouteRouteChildren,
 )
 
+interface mainRouteRouteChildren {
+  mainIndexRoute: typeof mainIndexRoute
+  mainPricingIndexRoute: typeof mainPricingIndexRoute
+}
+
+const mainRouteRouteChildren: mainRouteRouteChildren = {
+  mainIndexRoute: mainIndexRoute,
+  mainPricingIndexRoute: mainPricingIndexRoute,
+}
+
+const mainRouteRouteWithChildren = mainRouteRoute._addFileChildren(
+  mainRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   authRouteRoute: authRouteRouteWithChildren,
-  PricingIndexRoute: PricingIndexRoute,
+  mainRouteRoute: mainRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
