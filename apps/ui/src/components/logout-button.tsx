@@ -32,7 +32,8 @@ export function LogoutButton({ className, onSuccess }: LogoutButtonProps) {
       }
 
       onSuccess?.();
-      await router.navigate({ to: '/' });
+      const search = window.location.search;
+      await router.navigate({ to: '/', search: search });
     } catch {
       toast.add({
         type: 'error',
