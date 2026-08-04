@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { AppWindowMacIcon, ArrowRightIcon, ServerCogIcon, UserRoundCheckIcon } from 'lucide-react';
 
-import { Badge } from '@/components/ui/badge';
-import { buttonVariants } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge.tsx';
+import { buttonVariants } from '@/components/ui/button.tsx';
 import {
   Card,
   CardAction,
@@ -11,7 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from '@/components/ui/card.tsx';
 
 const architectureSteps = [
   {

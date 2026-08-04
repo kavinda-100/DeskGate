@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { LogoutButton } from '@/components/logout-button';
 import { ModeToggle } from '@/components/mode-toogle';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
@@ -41,6 +41,18 @@ function NavigationLinks({ onNavigate }: { onNavigate?: () => void }) {
         </Link>
       ))}
     </nav>
+  );
+}
+
+function DashboardLink({ onNavigate }: { onNavigate?: () => void }) {
+  return (
+    <Link
+      to={'/dashboard'}
+      className={buttonVariants({ size: 'default', variant: 'outline' })}
+      onClick={onNavigate}
+    >
+      Dashboard
+    </Link>
   );
 }
 
@@ -81,6 +93,7 @@ export function Header() {
           <NavigationLinks />
           <div className="flex items-center gap-3">
             <ModeToggle />
+            {isAuthenticated && <DashboardLink />}
             {isAuthenticated ? <LogoutButton /> : !isPending && <GuestActions />}
           </div>
         </div>
@@ -104,7 +117,10 @@ export function Header() {
                 <NavigationLinks onNavigate={() => setIsMenuOpen(false)} />
                 <div className="flex flex-col gap-3">
                   {isAuthenticated ? (
-                    <LogoutButton onSuccess={() => setIsMenuOpen(false)} />
+                    <>
+                      <DashboardLink onNavigate={() => setIsMenuOpen(false)} />
+                      <LogoutButton onSuccess={() => setIsMenuOpen(false)} />
+                    </>
                   ) : (
                     !isPending && <GuestActions onNavigate={() => setIsMenuOpen(false)} />
                   )}

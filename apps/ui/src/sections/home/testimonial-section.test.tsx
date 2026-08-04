@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import TestimonialSection from '@/sections/testimonial-section';
+import TestimonialSection from '@/sections/home/testimonial-section.tsx';
 
 describe('TestimonialSection', () => {
   afterEach(cleanup);
