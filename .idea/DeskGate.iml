@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/apps/ui/.tanstack" />
       <excludeFolder url="file://$MODULE_DIR$/packages/database/generated/prisma" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/desktop/.vite" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

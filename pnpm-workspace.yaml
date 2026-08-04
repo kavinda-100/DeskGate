@@ -1,6 +1,10 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+
+nodeLinker: hoisted
+blockExoticSubdeps: false
+
 allowBuilds:
   '@prisma/engines': true
   electron-winstaller: true
