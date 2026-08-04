@@ -2,7 +2,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import HeroSection from '@/sections/hero-section';
+import HeroSection from '@/sections/home/hero-section.tsx';
 
 vi.mock('@tanstack/react-router', () => ({
   Link: ({ children, to, ...props }: { children: React.ReactNode; to: string }) => (
