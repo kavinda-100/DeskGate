@@ -6,10 +6,17 @@ import { MakerRpm } from '@electron-forge/maker-rpm';
 import { VitePlugin } from '@electron-forge/plugin-vite';
 import { FusesPlugin } from '@electron-forge/plugin-fuses';
 import { FuseV1Options, FuseVersion } from '@electron/fuses';
+import { ELECTRON_SCHEME } from '@deskgate/config';
 
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    protocols: [
+      {
+        name: 'DeskGate App Protocol',
+        schemes: [ELECTRON_SCHEME],
+      },
+    ],
   },
   rebuildConfig: {},
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],

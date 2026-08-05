@@ -1,11 +1,14 @@
 import { app, BrowserWindow } from 'electron';
 import started from 'electron-squirrel-startup';
+import { authClient } from './lib/auth-client';
 
 import { createMainWindow } from './windows/main-window';
 
 if (started) {
   app.quit();
 }
+
+authClient.setupMain();
 
 app.whenReady().then(createMainWindow);
 

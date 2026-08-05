@@ -11,11 +11,12 @@
     "db:schema:generate": "pnpm dlx auth@latest generate --config ./src/auth/auth.ts --output ../../packages/database/prisma/schema.prisma --yes"
   },
   "dependencies": {
-    "@better-auth/stripe": "^1.6.25",
+    "@better-auth/electron": "^1.6.26",
+    "@better-auth/stripe": "^1.6.26",
+    "@deskgate/config": "workspace:*",
     "@deskgate/database": "workspace:*",
     "@deskgate/schemas": "workspace:*",
-    "@deskgate/config": "workspace:*",
-    "better-auth": "^1.6.25",
+    "better-auth": "^1.6.26",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

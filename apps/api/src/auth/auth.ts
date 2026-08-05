@@ -1,10 +1,11 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { stripe } from '@better-auth/stripe';
+import { electron } from '@better-auth/electron';
 import Stripe from 'stripe';
 
 import { prisma } from '@deskgate/database';
-import { plans } from '@deskgate/config';
+import { plans, ELECTRON_CLIENT_ID, ELECTRON_ORIGIN } from '@deskgate/config';
 import { env } from '../env';
 
 const stripeClient = new Stripe(env.STRIPE_SECRET_KEY, {
@@ -25,7 +26,7 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: [env.WEB_URL ?? 'http://localhost:3000'],
+  trustedOrigins: [env.WEB_URL ?? 'http://localhost:3000', ELECTRON_ORIGIN],
 
   emailAndPassword: {
     enabled: true,
@@ -74,6 +75,9 @@ export const auth = betterAuth({
   },
 
   plugins: [
+    electron({
+      clientID: ELECTRON_CLIENT_ID,
+    }),
     stripe({
       stripeClient,
       stripeWebhookSecret: env.STRIPE_WEBHOOK_SECRET,

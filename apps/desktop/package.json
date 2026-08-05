@@ -21,10 +21,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-react": "^5.1.1",
     "@electron-forge/cli": "^7.11.2",
     "@electron-forge/maker-deb": "^7.11.2",
     "@electron-forge/maker-rpm": "^7.11.2",
@@ -34,7 +30,11 @@
     "@electron-forge/plugin-fuses": "^7.11.2",
     "@electron-forge/plugin-vite": "^7.11.2",
     "@electron/fuses": "^1.8.0",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/electron-squirrel-startup": "^1.0.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^5.1.1",
     "electron": "43.2.0",
     "eslint": "^10.8.0",
     "eslint-plugin-import": "^2.32.0",
@@ -44,12 +44,16 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
+    "@better-auth/electron": "^1.6.26",
+    "better-auth": "^1.6.26",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "conf": "^15.1.0",
     "electron-squirrel-startup": "^1.0.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "@deskgate/config": "workspace:*"
   }
 }
