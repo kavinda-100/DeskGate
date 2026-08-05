@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useRouter } from '@tanstack/react-router';
 import { useForm } from '@tanstack/react-form';
+import { useEffect } from 'react';
 
-import { signInSchema } from '@deskgate/schemas';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -16,18 +16,25 @@ import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field
 import { Input } from '@/components/ui/input';
 import { toast } from '@/components/ui/toast.tsx';
 import { authClient } from '@/lib/auth-client.ts';
+import { signInSchema, electronSearchSchema } from '@deskgate/schemas';
 
 export const Route = createFileRoute('/(auth)/sign-in')({
-  validateSearch: (search) => ({
-    returnTo: search.returnTo === '/pricing' ? '/pricing' : '/',
-  }),
+  validateSearch: electronSearchSchema,
   component: RouteComponent,
 });
 
 function RouteComponent() {
   const router = useRouter();
-  const { returnTo } = Route.useSearch();
+  const query = Route.useSearch();
   const formId = 'sign-in-form';
+
+  useEffect(() => {
+    const id = authClient.ensureElectronRedirect();
+    return () => {
+      clearTimeout(id);
+    };
+  }, []);
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -43,9 +50,12 @@ function RouteComponent() {
           email: value.email,
           password: value.password,
           rememberMe: value.rememberMe,
+          fetchOptions: {
+            query: query,
+          },
         },
         {
-          onError: (error) => {
+          onError: (error: any) => {
             toast.add({
               type: 'error',
               title: 'Sign In Failed',
@@ -58,7 +68,9 @@ function RouteComponent() {
               title: 'Signed In',
               description: 'Welcome back.',
             });
-            router.navigate({ to: returnTo });
+            if (!query.client_id) {
+              router.navigate({ to: '/' });
+            }
           },
         },
       );

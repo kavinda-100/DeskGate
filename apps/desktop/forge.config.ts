@@ -11,6 +11,7 @@ import { ELECTRON_SCHEME } from '@deskgate/config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    executableName: 'deskgate-desktop',
     protocols: [
       {
         name: 'DeskGate App Protocol',
@@ -19,7 +20,19 @@ const config: ForgeConfig = {
     ],
   },
   rebuildConfig: {},
-  makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
+  makers: [
+    new MakerSquirrel({}),
+    new MakerZIP({}, ['darwin']),
+    new MakerRpm({}),
+    new MakerDeb({
+      options: {
+        name: 'deskgate-desktop',
+        productName: 'DeskGate Desktop',
+        bin: 'deskgate-desktop',
+        mimeType: ['x-scheme-handler/com.deskgate.app'],
+      },
+    }),
+  ],
   plugins: [
     new VitePlugin({
       // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.

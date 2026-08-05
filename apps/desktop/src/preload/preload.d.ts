@@ -1,10 +1,13 @@
-import type { authClient } from './lib/auth-client';
+import type { ElectronClientOptions, ExposedBridges } from '@better-auth/electron/preload';
 
 export {};
 
 declare global {
-  type Bridges = typeof authClient.$Infer.Bridges;
-  interface Window extends Bridges {
-    deskgate: Record<string, never>;
+  interface Window extends ExposedBridges<ElectronClientOptions> {
+    deskgate: {
+      registerDevice: () => Promise<unknown>;
+      getBootstrap: () => Promise<unknown>;
+      openBillingPortal: () => Promise<unknown>;
+    };
   }
 }

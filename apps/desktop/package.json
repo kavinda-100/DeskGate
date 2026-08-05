@@ -11,6 +11,7 @@
     "build": "electron-forge package",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "make:deb": "electron-forge make --targets=deb",
     "publish": "electron-forge publish",
     "lint": "eslint ."
   },
