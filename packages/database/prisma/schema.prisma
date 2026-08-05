@@ -13,16 +13,17 @@ datasource db {
 }
 
 model User {
-  id               String    @id @default(dbgenerated("pg_catalog.gen_random_uuid()")) @db.Uuid
+  id               String          @id @default(dbgenerated("pg_catalog.gen_random_uuid()")) @db.Uuid
   name             String
   email            String
-  emailVerified    Boolean   @default(false)
+  emailVerified    Boolean         @default(false)
   image            String?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
   stripeCustomerId String?
   sessions         Session[]
   accounts         Account[]
+  desktopDevices   DesktopDevice[]
 
   @@unique([email])
   @@map("user")
@@ -106,4 +107,25 @@ model RateLimit {
 
   @@unique([key])
   @@map("rateLimit")
+}
+
+model DesktopDevice {
+  id     String @id @default(dbgenerated("pg_catalog.gen_random_uuid()")) @db.Uuid
+  userId String @db.Uuid
+
+  installationId String  @unique
+  name           String
+  platform       String
+  architecture   String?
+  osVersion      String?
+  appVersion     String?
+
+  createdAt  DateTime  @default(now())
+  lastSeenAt DateTime  @default(now())
+  revokedAt  DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, revokedAt])
 }

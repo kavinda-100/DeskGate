@@ -19,6 +19,7 @@
     "start": "pnpm --parallel --filter \"./apps/*\" start",
     "predev": "pnpm --filter \"./packages/*\" build",
     "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "desktop": "pnpm --filter @deskgate/desktop start",
     "build": "pnpm --filter \"./packages/*\" build && pnpm --filter \"./apps/*\" build",
     "db:generate": "pnpm --filter @deskgate/database db:generate",
     "db:push": "pnpm --filter @deskgate/database db:push",

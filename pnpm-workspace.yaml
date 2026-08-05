@@ -1,8 +1,25 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+
+nodeLinker: hoisted
+blockExoticSubdeps: false
+
 allowBuilds:
   '@prisma/engines': true
+  electron-winstaller: true
   esbuild: true
   prisma: true
   unrs-resolver: true
+
+minimumReleaseAgeExclude:
+  - '@better-auth/core@1.6.26'
+  - '@better-auth/drizzle-adapter@1.6.26'
+  - '@better-auth/electron@1.6.26'
+  - '@better-auth/kysely-adapter@1.6.26'
+  - '@better-auth/memory-adapter@1.6.26'
+  - '@better-auth/mongo-adapter@1.6.26'
+  - '@better-auth/prisma-adapter@1.6.26'
+  - '@better-auth/stripe@1.6.26'
+  - '@better-auth/telemetry@1.6.26'
+  - better-auth@1.6.26
